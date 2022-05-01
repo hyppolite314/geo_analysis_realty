@@ -1,52 +1,66 @@
 # Geo-Spatial Analysis of Housing / Rental Market in San Francisco
-Geo-spatial analysis of the housing market for San Francisco, using PyViz functions
+Geo-spatial analysis of the housing market for San Francisco, using PyViz functions. The tools built in this module were designed based on a one-click buy-and-rent busines idea for people to buy properties and then rent them.
+
+Based on the usage of interactive visualizations and geospatial analysis, the objective is to find properties in the San Francisco market, which are viable investment opportunities.
 
 ---
 
 ## Technologies
 
-ADD NEW CONTENT HERE
-
-Required programs, systems, and overall dependencies:
+Required programs, libraries, systems, and overall dependencies:
 
 Python (version 3.0 or later)
-Fire
-Pathlib
-tkinter
-sys
-questionary
+<br>
+`Pathlib`
+<br>
+`pandas`
+<br>
+`%matplotlib`
+<br>
+`hvplot.pandas`
 
-ADD NEW CONTENT HERE
 ---
 
 ## Installation Guide
 
-`pip install Fire`
 `pip install Pathlib`
+
+conda install -c pyviz hvplot geoviews
 
 ---
 
 ## Usage
 
-Prompting the User for file path:
+Interactive Line Plots:
 
 ```python
-
-ADD NEW CONTENT HERE
-ADD NEW CONTENT HERE
-ADD NEW CONTENT HERE
-
-def save_qualifying_loans(qualifying_loans):
-    save_to_file = questionary.text("Would you like to save qualifying loans to a CSV?(yes/no)").ask()
-    save_to_file = (save_to_file)
-
-ADD NEW CONTENT HERE
-ADD NEW CONTENT HERE
-ADD NEW CONTENT HERE
-
+prices_sqft_yr_plot = prices_square_foot_by_year.hvplot.line(
+    x='year',
+    y=['sale_price_sqr_foot','gross_rent'],
+    title="Gross Rent / Sale Price per SqFt",
+).opts(yformatter="%.0f")
 ```
+![Screenshot of Plot](https://github.com/hyppolite314/geo_analysis_realty/blob/main/inter_plot.png?raw=true)
 
-![Screenshot of Terminal](https://github.com/hyppolite314/LoanApp_Beta/blob/main/terminal_scrnshot.png?raw=true)
+GeoViews via `hvplot.points`
+
+```python
+all_neighborhoods_plot = all_neighborhoods_df.hvplot.points(
+    'Lon',
+    'Lat',
+    geo=True,
+    size='sale_price_sqr_foot',
+    scale=1,
+    color='gross_rent',
+    tiles='OSM',
+    frame_width=700,
+    frame_height=500,
+    title = "Average Sales Price per SqFt (2010-2016)"
+    )
+
+all_neighborhoods_plot
+```
+![Screenshot of Plot](https://github.com/hyppolite314/geo_analysis_realty/blob/main/geo_view.png?raw=true)
 
 ---
 
@@ -55,10 +69,10 @@ ADD NEW CONTENT HERE
 Reginald Hyppolite
 https://www.linkedin.com/in/reginald-hyppolite-nyc/
 
-Shout out to all the great TAs and Professor V
+BIG THANKS to all the great TAs and Professor Vinicio DeSola
 
 ---
 
 ## License
 
-N/A -- Free open.ware
+N/A -- Free open.ware for a better world.
